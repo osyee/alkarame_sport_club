@@ -14,7 +14,19 @@ use App\Models\Wears;
 class Sports extends Model
 {
     use HasFactory;
-     
+    protected $fillable = [
+      'uuid',
+      'name' , 
+      'image',
+
+];
+protected $casts = [
+  'uuid'=>'string',
+  'name'=>'string',
+  'image'=>'string',
+    
+];
+
   public function association()
   {
     return $this->hasMany(Associations::class) ;
