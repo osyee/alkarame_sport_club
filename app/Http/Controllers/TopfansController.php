@@ -16,7 +16,7 @@ class TopfansController extends Controller
     use GeneralTrait ;
     public function index()
     {
-        
+      
         return TopfansResource::collection(Topfans::all()) ;
     }
     public function store(Request $request)
