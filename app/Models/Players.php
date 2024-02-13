@@ -11,6 +11,7 @@ use App\Models\Replacements ;
 class Players extends Model
 {
     use HasFactory;
+   
 
     public function plan()
     {

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('work');
             $table->string('image');
             $table->unsignedBigInteger('Sports_id')->unique();
-            $table->foreign('Sports_id')->on('Sports')->references('id')->onDelete('cascade');
+            $table->foreign('Sports_id')->on('sports')->references('id')->onDelete('cascade');
+        
             $table->timestamps();
         });
     }

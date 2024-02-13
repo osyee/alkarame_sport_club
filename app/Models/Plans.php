@@ -10,6 +10,17 @@ use App\Models\Matches ;
 class Plans extends Model
 {
     use HasFactory;
+    protected $table = 'plans';
+
+protected $fillable = [
+    'uuid',
+    'Players_id',
+    'matches_id',
+    'status',
+    
+] ;
+ 
+ 
 
     public function player()
     {

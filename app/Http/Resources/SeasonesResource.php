@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TopfansResource extends JsonResource
+class SeasonesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,12 @@ class TopfansResource extends JsonResource
     public function toArray($request)
     {
         return [
-
-            'associations' => new AssociationsResource($this->associations),
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-
+            'uuid'=>$this->uuid,
+            'name'=>$this->name,
+            'start_date'=>$this->start_date,
+            'end_date'=>$this->end_date,
+            'created_at'=>$this->created_at->format('Y-m-d H:i:s'),
+            'updated_at'=>$this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }
