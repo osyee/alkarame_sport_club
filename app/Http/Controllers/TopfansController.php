@@ -10,38 +10,53 @@ use App\Models\Topfans ;
 use App\Http\Resources\TopfansResource ;
 use App\Models\Associations ;
 use App\Models\Sports ;
+use Illuminate\Support\Str;
 
 class TopfansController extends Controller
 {
     use GeneralTrait ;
-    public function index()
+
+    public function show(request $request)
     {
-      
-        return TopfansResource::collection(Topfans::all()) ;
+       $topfans = Topfans::where('uuid', $request->uuid)->with('association')->get();
+       if($topfans)
+       {
+        return $this->apiResponse($topfans, true, null, 200);
+       }
+       else{
+        return $this->notFoundResponse('topfans not found');
+       }
+        
     }
+
+    public function all()
+    {
+        $topfans = Topfans::with('association')->get() ;
+       return $this->apiResponse($topfans, true, null, 200);
+    
+    }
+
+    
     public function store(Request $request)
     {
-        $user = auth('sanctum')->user();
+        //$user = auth('sanctum')->user();
         $validator = Validator::make($request->all(), [
-            'associations_uuid' => ['required', 'string', 'exists:associations,uuid'],
+            'associations_id' =>'required|string|exists:associations,id',
 
         ]);
 
-        if ($validator->fails()) {
+       if ($validator->fails()) {
             return $this->requiredField($validator->errors()->first());
         }
 
         try {
 
-            $topfans = new Topfans();
-            $topfans->uuid = Str::uuid();
-            $topfans->user()->associate($user)->save();
-
             Topfans::create([
-                    'associations_id'=> $request->associations_id ,
+                'uuid'=>Str::uuid() ,
+              'associations_id'=> $request->associations_id ,
                 ]);
 
-            $data['topfans'] = new TopfansResource($topfans);
+            $data = 'created successfully' ;
 
             return $this->apiResponse($data, true, null, 200);
             }
@@ -49,15 +64,38 @@ class TopfansController extends Controller
             return $this->apiResponse(null, false, $ex->getMessage(), 500);
         }
     }
+
+
     public function update(Request $request )
     {
         $validator = Validator::make($request->all(), [
-            'associations_id' => ['required', 'string', 'exists:associations,uuid'],
+            'uuid' => 'required|string|exists:topfans,uuid',
+            'associations_id' =>'required|string|exists:associations,id',
         ]);
 
         if ($validator->fails()) {
             return $this->requiredField($validator->errors()->first());
         }
+        try {
+
+           $topfans = Topfans::where('uuid', $request->input('uuid'))->first();
+            
+       
+            $data = [
+                'uuid' => Str::uuid() ,
+                'associations_id'=> $request->associations_id ,
+            ] ;
+
+            $topfans->update($data);
+        $data = 'update successfully';
+
+            return $this->apiResponse($data, true, null, 200);
+        } catch (\Exception $ex) {
+            return $this->apiResponse(null, false, $ex->getMessage(), 500);
+        }
+    }
+    public function delete(request $request)
+    {
         try {
             $topfans = Topfans::where('uuid', $request->input('uuid'))->first();
 
@@ -65,48 +103,18 @@ class TopfansController extends Controller
                 return $this->notFoundResponse('topfans not found.');
             }
 
-            $topfans->associations()->delete();
+            $id = $topfans->associations_id ;
+            $asso = Associations::where('id',$id)->first();
 
-                $topfans = Topfans::where('uuid',$request->associations_uuid)->firstOrFail();
-
-                Associations::create([
-                    'boss' => $request->boss,
-                    'description' => $request->description,
-                    'image' => $request->image,
-                    'country'=> $request->country,
-                    'sports_id' => $sports->id ,
-                    
-                ]);
-
-            $data['topfans'] = new TopfansResource($topfans);
-
-            return $this->apiResponse($data, true, null, 200);
-        } catch (\Exception $ex) {
-            return $this->apiResponse(null, false, $ex->getMessage(), 500);
-        }
-    }
-    public function delete()
-    {
-        try {
-            $topfans = Topfans::where('uuid', $request->input('topfans_uuid'))->first();
-
-            if (!$topfans) {
-                return $this->notFoundResponse('topfans not found.');
-            }
-
-            $topfans->associations()->delete();
-
-            $topfans->delete();
-
+            if($asso->delete())
+            {
+                $topfans->delete() ;
             return $this->apiResponse([], true, null, 200);
+            }
         } catch (\Exception $ex) {
             return $this->apiResponse(null, false, $ex->getMessage(), 500);
         }
     }
-    public function show()
-    {
-        $uuid = $request->input('topfans_uuid') ;
-        return new TopfansResource(Topfans::findOrFail($uuid));
-    }
+    
 
 }

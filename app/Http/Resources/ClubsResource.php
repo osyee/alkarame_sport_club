@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\AssociationsResource;
+use App\Http\Resources\SportsResource ;
 
-class TopfansResource extends JsonResource
+class ClubsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,11 @@ class TopfansResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'association' => new AssociationsResource($this->association),
+             
+            'name' => $this->name ,
+            'address' => $this->address ,
+            'logo'=> $this->logo ,
+            'sport' => new SportsResource($this->sport),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
 

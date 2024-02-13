@@ -11,9 +11,27 @@ class Associations extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'uuid',
+      'boss',
+      'image',
+      'country',
+      'description',
+      'Sports_id'
+    ] ;
+
+    protected $casts = 
+    [
+      'uuid'=> 'string',
+      'boss'=>'string',
+      'image'=>'string',
+      'country'=>'string',
+      'description'=>'string',
+    ] ;
+
     public function sport()
     {
-        return $this->belongsTo(Sports::class) ;
+        return $this->belongsTo(Sports::class,'Sports_id') ;
     }
 
     public function topfan()

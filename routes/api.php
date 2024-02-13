@@ -2,10 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TopfansController ;
-use App\Http\Controllers\PlayersController;
-use App\Http\Controllers\SportsController;
-use App\Http\Controllers\MatchesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,30 +17,26 @@ use App\Http\Controllers\MatchesController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// ...................top fans api
-Route::get('topfans-index',[TopfansController::class,'index']) ;
-Route::post('topfans-show',[TopfansController::class,'show']) ;
-Route::post('topfans-store',[TopfansController::class,'store']) ;
-Route::post('topfans-update',[TopfansController::class,'update']) ;
-Route::post('topfans-delete',[TopfansController::class,'delete']) ;
 
-// ...................player api
-    Route::get('player-store',[PlayersController::class,'store']) ;
-    Route::get('player-delete/{id}',[PlayersController::class,'destroy']) ;
-    Route::get('player-show',[PlayersController::class,'show']) ;
-    Route::get('player-index/{id}',[PlayersController::class,'index']) ;
+//.............Topfans..........
 
-    Route::get('player-update/{id}',[PlayersController::class,'update']) ;
-// ...................sports api
+Route::get('topfan-all',[App\Http\Controllers\TopfansController::class,'all']) ;
+Route::get('topfan-show',[App\Http\Controllers\TopfansController::class,'show']) ;
+Route::post('topfan-store',[App\Http\Controllers\TopfansController::class,'store']) ;
+Route::post('topfan-update',[App\Http\Controllers\TopfansController::class,'update']) ;
+Route::post('topfan-delete',[App\Http\Controllers\TopfansController::class,'delete']) ;
 
-    Route::get('sport-index/{id}',[SportsController::class,'index']) ;
-    Route::get('sport-show',[SportsController::class,'show']) ; 
-    Route::get('sport-delete/{id}',[SportsController::class,'destroy']) ;
+//...........Clubs............
 
-    Route::post('sport-store',[SportsController::class,'store']) ;
-    Route::post('sport-update/{id}',[SportsController::class,'update']) ;
-  
-// ...................matches api
-// Route::get('match-show',[MatchesController::class,'show']) ; 
-// Route::get('match-store',[MatchesController::class,'store']) ; 
-// Route::get('match-delete/{id}',[MatchesController::class,'destroy']) ;
+Route::get('club-index',[App\Http\Controllers\ClubsController::class,'index']) ;
+Route::post('club-store',[App\Http\Controllers\ClubsController::class,'store']) ;
+Route::post('club-update',[App\Http\Controllers\ClubsController::class,'update']) ;
+Route::post('club-delete',[App\Http\Controllers\ClubsController::class,'delete']) ;
+
+//............Associations........
+
+Route::get('association-index',[App\Http\Controllers\AssociationsController::class,'index']) ;
+Route::post('association-store',[App\Http\Controllers\AssociationsController::class,'store']) ;
+Route::post('association-update',[App\Http\Controllers\AssociationsController::class,'update']) ;
+Route::post('association-delete',[App\Http\Controllers\AssociationsController::class,'delete']) ;
+

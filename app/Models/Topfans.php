@@ -12,15 +12,16 @@ class Topfans extends Model
 protected $table = 'topfans';
 
 protected $fillable = [
+    'uuid',
     'associations_id'
 ] ;
  protected $casts = [] ;
  protected $hidden = [] ;
 
-    public function association()
-    {
-        return $this->belongsTo(Associations::class) ;
-    }
+ public function association()
+ {
+    return $this->belongsTo(Associations::class,'associations_id') ;
+}
 
     
 }
