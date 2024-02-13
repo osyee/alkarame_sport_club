@@ -10,8 +10,15 @@ use App\Models\Sessions ;
 class Wears extends Model
 {
     use HasFactory;
-    
-
+    protected $table = 'Wears';
+    protected $fillable = [
+        'image',
+        'Sports_id',
+        'sessions_id',
+        'uuid'
+    ] ;
+     protected $casts = [] ;
+     protected $hidden = [] ;
     public function sport()
     {
         return $this->belongsTo(Sports::class) ;

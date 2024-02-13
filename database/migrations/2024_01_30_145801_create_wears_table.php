@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('image');
-            $table->unsignedBigInteger('Sports_id')->unique();
+            $table->unsignedBigInteger('Sports_id');
             $table->foreign('Sports_id')->on('Sports')->references('id')->onDelete('cascade');
-            $table->unsignedBigInteger('sessions_id')->unique();
+            $table->unsignedBigInteger('sessions_id');
             $table->foreign('sessions_id')->on('sessions')->references('id')->onDelete('cascade');
             $table->timestamps();
         });

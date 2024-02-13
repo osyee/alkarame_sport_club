@@ -10,7 +10,13 @@ use App\Models\Matches ;
 class Replacments extends Model
 {
     use HasFactory;
-
+    protected $table="replacments";
+    protected $fillable=[
+        'uuid',
+        'inplayer_id',
+        'outplayer_id',
+        'matches_id',
+    ];
     public function outplayer()
     {
         return $this->belongsTo(Players::class,'outplayer_id') ;
@@ -24,6 +30,6 @@ class Replacments extends Model
 
     public function match()
     {
-        return $this->belongsTo(Matchs::class) ;
+        return $this->belongsTo(Matches::class) ;
     }
 }
