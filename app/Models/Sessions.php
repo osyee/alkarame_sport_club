@@ -8,6 +8,7 @@ use App\Models\Primes ;
 use App\Models\Wears ;
 use App\Models\Matches ;
 use App\Models\Standings ;
+use App\Models\Information;
 
 class Sessions extends Model
 {
@@ -33,6 +34,11 @@ class Sessions extends Model
   {
     return $this->hasMany(Standings::class) ;
   }
+
+ /* public function information()
+  {
+    return $this->morphMany(Information::class,'information_able');
+  }*/
 
 
 }

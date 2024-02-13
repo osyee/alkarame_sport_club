@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Videos;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,4 +22,8 @@ class Associations extends Model
       return $this->hasMany(Topfans::class) ;
      
     } 
+    public function vidio()
+    {
+      return $this->morphMany(Videos::class,'vidioable');
+    }
 }

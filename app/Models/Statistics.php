@@ -9,7 +9,7 @@ use App\Models\Matches ;
 class Statistics extends Model
 {
     use HasFactory;
-    protected $table = 'statistics';
+   
     protected $fillable = [
         'uuid',
         'name',
@@ -17,14 +17,13 @@ class Statistics extends Model
         'matches_id',
     ] ;
      protected $casts = [
-        'uuid'=>'string',
-        'name'=>'string',
+
         'vaalue'=>'json'
      ] ;
      protected $hidden = [] ;
 
     public function match()
     {
-        return $this->belongsTo(Matches::class) ;
+        return $this->belongsTo(Matches::class,'matches_id') ;
     }
 }

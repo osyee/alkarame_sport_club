@@ -10,15 +10,16 @@ use App\Models\Sessions ;
 class Wears extends Model
 {
     use HasFactory;
+    protected $fillable=['image','Sports_id','sessions_id'];
     
 
     public function sport()
     {
-        return $this->belongsTo(Sports::class) ;
+        return $this->belongsTo(Sports::class,'Sports_id') ;
     }
 
     public function session()
     {
-        return $this->belongsTo(Sessions::class) ;
+        return $this->belongsTo(Sessions::class,'sessions_id') ;
     }
 }
