@@ -12,9 +12,24 @@ class Clubs extends Model
 {
     
     use HasFactory;
+
+    protected $fillable = [
+      'uuid',
+      'name',
+      'logo',
+      'address',
+      'Sports_id'
+    ] ;
+protected $casts = [
+      'uuid'=>'string',
+      'name'=>'string',
+      'logo'=>'string',
+      'address'=>'string',
+] ;
+
     public function sport()
     {
-        return $this->belongsTo(Sports::class) ;
+        return $this->belongsTo(Sports::class,'Sports_id') ;
     }
     
     public function standing()

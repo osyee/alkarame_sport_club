@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('topfans', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('associations_id')->unique();
             $table->foreign('associations_id')->on('associations')->references('id')->onDelete('cascade');
             $table->timestamps();
