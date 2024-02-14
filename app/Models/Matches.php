@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
  use App\Models\Plans ;
- use App\Models\Replacements;
+ use App\Models\Replacments;
  use App\Models\Clubs;
  use App\Models\Sessions;
  use App\Models\Statistics ;
+ use App\Models\Videos;
+ 
 
 class Matches extends Model
 {
@@ -22,7 +24,7 @@ class Matches extends Model
 
   public function replacment()
   {
-    return $this->hasMany(Replacements::class) ;
+    return $this->hasMany(Replacments::class) ;
   } 
 
   public function session()
@@ -44,4 +46,12 @@ class Matches extends Model
   {
     return $this->hasMany(Statistics::class) ;
   } 
+ /* public function information()
+  {
+    return $this->morphMany(Information::class,'information_able');
+  }*/
+  public function vidio()
+  {
+    return $this->morphMany(Videos::class,'vidioable');
+  }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\WearsController ;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\VideosController;
+use App\Http\Controllers\EmployeesController ;
+use App\Http\Controllers\PlansController;
+use App\Http\Controllers\SessionsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -90,3 +93,21 @@ Route::get('update/vidio/{id}',[VideosController::class,'update'])->name('update
 Route::get('store/vidio',[VideosController::class,'store'])->name('store-vidio');
 Route::get('destore/vidio/{id}',[VideosController::class,'destore'])->name('destore-vidio');
 Route::get('index/vidio',[VideosController::class,'index'])->name('index-vidio');
+
+
+
+
+Route::get('employee-index',[EmployeesController::class,'index']) ;
+Route::post('employee-store',[EmployeesController::class,'store']) ;
+Route::post('employee-update',[EmployeesController::class,'update']) ;
+Route::post('employee-delete',[EmployeesController::class,'delete']) ;
+Route::get('employee-search', [EmployeesController::class,'search']);
+
+Route::get('plan-index',[PlansController::class,'index']) ;
+Route::get('plan-store',[PlansController::class,'store']) ;
+Route::get('plan-delete',[PlansController::class,'delete']) ;
+
+Route::get('session-index',[SessionsController::class,'index']) ;
+Route::get('session-store',[SessionsController::class,'store']) ;
+Route::get('session-update',[SessionsController::class,'update']) ;
+Route::get('session-delete',[SessionsController::class,'delete']) ;

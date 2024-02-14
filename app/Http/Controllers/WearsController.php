@@ -85,7 +85,7 @@ class WearsController extends Controller
         
     }
     
-    public function delete($id)
+    public function destore($id)
     {
         $exists=Wears::where('id',$id)->delete();
       if($exists)

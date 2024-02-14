@@ -12,6 +12,19 @@ use App\Models\Standings ;
 class Sessions extends Model
 {
     use HasFactory;
+    protected $table = 'sessions';
+
+protected $fillable = [
+    'uud',
+    'name',
+    'start_date',
+    'end_date',
+    'created_at',
+    'updated_at',
+
+    
+] ;
+ 
 
 
     public function prime()
