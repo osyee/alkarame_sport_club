@@ -11,6 +11,9 @@ use App\Http\Controllers\VideosController;
 use App\Http\Controllers\EmployeesController ;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\PlayersController;
+use App\Http\Controllers\SportsController;
+use App\Http\Controllers\MatchesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -111,3 +114,21 @@ Route::get('session-index',[SessionsController::class,'index']) ;
 Route::get('session-store',[SessionsController::class,'store']) ;
 Route::get('session-update',[SessionsController::class,'update']) ;
 Route::get('session-delete',[SessionsController::class,'delete']) ;
+
+
+
+// ...................player api
+Route::post('player-store',[PlayersController::class,'store']) ;
+Route::get('player-delete/{id}',[PlayersController::class,'destroy']) ;
+Route::get('player-show',[PlayersController::class,'show']) ;
+Route::get('player-index/{id}',[PlayersController::class,'index']) ;
+
+Route::get('player-update/{id}',[PlayersController::class,'update']) ;
+// ...................sports api
+
+Route::get('sport-index/{id}',[SportsController::class,'index']) ;
+Route::get('sport-show',[SportsController::class,'show']) ; 
+Route::get('sport-delete/{id}',[SportsController::class,'destroy']) ;
+
+Route::post('sport-store',[SportsController::class,'store']) ;
+Route::post('sport-update/{id}',[SportsController::class,'update']) ;
