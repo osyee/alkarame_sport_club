@@ -14,6 +14,7 @@ use App\Models\Wears;
 class Sports extends Model
 {
     use HasFactory;
+    protected $fillable=['name',	'image'	];
      
   public function association()
   {
@@ -44,7 +45,12 @@ class Sports extends Model
   {
     return $this->hasMany(Wears::class) ;
   } 
+  public function information()
+  {
+    return $this->morphMany(Information::class,'information_able');
+  }
 
+ 
   
 
 

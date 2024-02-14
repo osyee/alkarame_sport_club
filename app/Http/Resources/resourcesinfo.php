@@ -22,7 +22,7 @@ class resourcesinfo extends JsonResource
             'reads'=>$this->reads,
             'type'=>$this->type,
             'created_at'=>Carbon::parse($this->created_at)->diffForHumans(),
-            'name'=>$this->whenLoaded('information_able',function(){return $this->information_able->name;}),
+           
             
 
         ];
