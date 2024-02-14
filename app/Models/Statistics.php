@@ -17,8 +17,6 @@ class Statistics extends Model
         'matches_id',
     ] ;
      protected $casts = [
-        'uuid'=>'string',
-        'name'=>'string',
         'vaalue'=>'json'
      ] ;
      protected $hidden = [] ;

@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrimesController ;
 use App\Http\Controllers\ReplacmentsController ;
 use App\Http\Controllers\WearsController ;
-
+use App\Http\Controllers\InformationController;
+use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\VideosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,11 +47,10 @@ Route::post('association-delete',[App\Http\Controllers\AssociationsController::c
 
 
 /**========================Wears-Api======================== */
-Route::get('Wears-index',[WearsController::class,'index']) ;
-Route::get('Wears-show',[WearsController::class,'show']) ;
-Route::post('Wears-store',[WearsController::class,'store']) ;
-Route::get('Wears-update',[WearsController::class,'update']) ;
-Route::get('Wears-delete',[WearsController::class,'delete']) ;
+Route::get('update/wear/{id}',[WearsController::class,'update'])->name('update-wear');
+Route::get('store/wear',[WearsController::class,'store'])->name('store-wear');
+Route::get('index/wear',[WearsController::class,'index'])->name('index-wear');
+Route::get('destore/wear/{id}',[WearsController::class,'destore'])->name('destore-wear');
 /**========================End Wears-Api======================== */
 
 /**========================Primes-Api======================== */
@@ -70,3 +71,22 @@ Route::get('Replacments-update/{id}/edit',[ReplacmentsController::class,'edit'])
 Route::put('Replacments-update/{id}/edit',[ReplacmentsController::class,'update']) ;
 Route::delete('Replacments-Destroy/{id}/Destroy',[ReplacmentsController::class,'Destroy']) ;
 /**========================End Replacments-Api======================== */
+
+
+////////////Information
+Route::post('store/Information',[InformationController::class,'store'])->name('store-Information');
+Route::get('index/Information',[InformationController::class,'index'])->name('index-Information');
+Route::get('destore/Information/{id}',[InformationController::class,'destore'])->name('destore-Information');
+Route::get('update/Information/{id}',[InformationController::class,'update'])->name('update-Information');
+
+////////////Statistics
+Route::get('update/Statistics/{id}',[StatisticsController::class,'update'])->name('update-Statistics');
+Route::get('destore/Statistics/{id}',[StatisticsController::class,'destore'])->name('destore-Statistics');
+Route::get('index/Statistics',[StatisticsController::class,'index'])->name('index-Statistics');
+Route::get('store/Statistics',[StatisticsController::class,'store'])->name('store-Statistics');
+
+///////////vidio
+Route::get('update/vidio/{id}',[VideosController::class,'update'])->name('update-vidio');
+Route::get('store/vidio',[VideosController::class,'store'])->name('store-vidio');
+Route::get('destore/vidio/{id}',[VideosController::class,'destore'])->name('destore-vidio');
+Route::get('index/vidio',[VideosController::class,'index'])->name('index-vidio');
